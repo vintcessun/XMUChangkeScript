@@ -1,0 +1,9 @@
+opencv_contrib_python==4.8.0.74
+opencv_contrib_python==4.6.0.66
+opencv_python==4.8.0.74
+opencv_python==4.6.0.66
+opencv_python==4.11.0.86
+qrcode==7.3.1
+qrcode==7.4.2
+qrcode_terminal==0.8
+qreader==3.16
