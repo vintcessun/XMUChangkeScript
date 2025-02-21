@@ -5,19 +5,25 @@ import time
 import qrcode
 import os
 import qrcode_terminal
+import glob
 
 
-def is_image_by_extension(file_path):
-    _, file_extension = os.path.splitext(file_path)
-    image_extensions = [".jpg", ".jpeg", ".png", ".gif", ".bmp"]
-    return file_extension.lower() in image_extensions
+def get_latest_image(directory):
+    # 图片文件扩展名
+    image_extensions = ["*.jpg", "*.jpeg", "*.png", "*.gif", "*.bmp"]
+    # 搜索目录下的所有图片文件
+    image_files = []
+
+    for ext in image_extensions:
+        image_files.extend(glob.glob(os.path.join(directory, ext)))
+
+    if not image_files:
+        return None
+    latest_image = max(image_files, key=os.path.getmtime)
+    return latest_image
 
 
-img = None
-for e in os.listdir():
-    if is_image_by_extension(e):
-        img = e
-        break
+img = get_latest_image(".")
 if img is None:
     raise FileNotFoundError("没有查找到图片文件，请任意拍摄一张二维码并放置在目录下")
 print(f"发现img:{img}")
