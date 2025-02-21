@@ -18,7 +18,8 @@ for e in os.listdir():
     if is_image_by_extension(e):
         img = e
         break
-
+if img is None:
+    raise FileNotFoundError("没有查找到图片文件，请任意拍摄一张二维码并放置在目录下")
 print(f"发现img:{img}")
 
 qreader = QReader()
